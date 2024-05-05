@@ -24,6 +24,8 @@ urlpatterns = [
     path('person/create/', myapp_views.PersonCreate.as_view()),
     path('person/<int:pk>/', myapp_views.PersonDetail.as_view()),
     path('send/', myapp_views.send_mail),
+    path('news/', myapp_views.NewsList.as_view()),
+    path('news/create/', myapp_views.NewsCreate.as_view()),
 
     path('admin/', admin.site.urls),
 ]

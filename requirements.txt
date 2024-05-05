@@ -13,3 +13,7 @@ tzdata==2024.1
 vine==5.1.0
 wcwidth==0.2.13
 redis==5.0.4
+beautifulsoup4==4.12.3
+django==4.2.11
+django-bootstrap-v5==1.0.11
+soupsieve==2.5

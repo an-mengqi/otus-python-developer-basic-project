@@ -1,17 +1,13 @@
 {% extends 'myapp/base.html' %}
 
 {% block content %}
-    <h3>Company's The Wall of Honor</h3>
-    <h5>People ({{ object_list|length }})</h5>
+    <h3>Company's News</h3>
+    <h5>News ({{ object_list|length }})</h5>
     <ul>
         {% for item in object_list %}
-            <li class="list-group-item">
-                {{ item.name }}, {{ item.position }}, {{ item.age }} years
-                ({% for achievement in item.achievement_set.all %}
-                {{ achievement }}
-                {% endfor %}
-                )
-                <p> {{item.personprofile.about_person}} </p>
+            <li>
+                <h6>{{ item.title }}</h6>
+                {{ item.description }}
             </li>
         {% endfor %}
     </ul>

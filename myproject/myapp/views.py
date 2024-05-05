@@ -2,7 +2,7 @@ import time
 
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, CreateView
-from myapp.models import Person
+from myapp.models import Person, News
 from . import tasks
 
 
@@ -21,7 +21,7 @@ class PageTitleMixin:
 class PersonList(PageTitleMixin, ListView):
     page_title = 'People'
     model = Person
-    paginate_by = 3
+    paginate_by = 5
 
 
 def send_mail(request):
@@ -54,3 +54,15 @@ class PersonCreate(CreateView):
 
 class PersonDetail(PageTitleMixin, DetailView):
     model = Person
+
+
+class NewsList(PageTitleMixin, ListView):
+    page_title = 'News'
+    model = News
+    paginate_by = 5
+
+
+class NewsCreate(CreateView):
+    model = News
+    fields = '__all__'
+    success_url = '/news/'

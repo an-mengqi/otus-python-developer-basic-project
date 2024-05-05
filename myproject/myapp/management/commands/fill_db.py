@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from myapp.models import Person, PersonProfile, Position, Achievement
+from myapp.models import Person, PersonProfile, Position, Achievement, News
 
 
 class Command(BaseCommand):
@@ -8,6 +8,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         positions = Position.objects.all()
+        news = News.objects.all()
 
         # удаление данных
         positions.delete()
@@ -43,6 +44,13 @@ class Command(BaseCommand):
         communication_diploma.person.add(interpreter_e)
 
         director_profile = PersonProfile.objects.create(about_person='Likes active sports while spending free time', person=director_v)
+
+        # news
+        news_1 = News.objects.create(title="Company's Internal Chess Championship!", description="Take part in the Company's Internal Chess Championship on the 15th of May, 2024!")
+        news_2 = News.objects.create(title="Some title",
+                                     description="Some description'")
+        news_r = News.objects.create(title="Some title fjfj",
+                                     description="Some description kkr'")
 
         self.stdout.write(
             self.style.SUCCESS('DB is ready')
