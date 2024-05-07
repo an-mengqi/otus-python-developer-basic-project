@@ -1,6 +1,8 @@
 from django.core.management.base import BaseCommand
 
 from myapp.models import Person, PersonProfile, Position, Achievement, News
+from myauth.models import OtusUser
+
 
 
 class Command(BaseCommand):
@@ -51,6 +53,14 @@ class Command(BaseCommand):
                                      description="Some description'")
         news_r = News.objects.create(title="Some title fjfj",
                                      description="Some description kkr'")
+
+        su = OtusUser.objects.filter(username='otus').first()
+        if not su:
+            OtusUser.objects.create_superuser(
+                username='otus',
+                email='admin@otus.local',
+                password='pass',
+            )
 
         self.stdout.write(
             self.style.SUCCESS('DB is ready')

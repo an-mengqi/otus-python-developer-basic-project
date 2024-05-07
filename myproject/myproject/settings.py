@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'myauth',
     'myapp',
     'bootstrap5',
 ]
@@ -137,3 +138,8 @@ EMAIL_FILE_PATH = 'tmp/app-messages'
 # CELERY_HOST = '0.0.0.0'
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+
+# custom user
+AUTH_USER_MODEL = 'myauth.OtusUser'
+LOGIN_URL = '/auth/login/'
+LOGIN_REDIRECT_URL = '/'

@@ -2,6 +2,7 @@ import time
 
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from myapp.models import Person, News
 from . import tasks
 
@@ -18,7 +19,7 @@ class PageTitleMixin:
         return context
 
 
-class PersonList(PageTitleMixin, ListView):
+class PersonList(PageTitleMixin, LoginRequiredMixin, ListView):
     page_title = 'People'
     model = Person
     paginate_by = 5
@@ -46,10 +47,11 @@ def send_mail(request):
     return render(request, 'myapp/send_mail.html', context=context)
 
 
-class PersonCreate(CreateView):
+class PersonCreate(PermissionRequiredMixin, CreateView):
     model = Person
     fields = '__all__'
     success_url = '/'
+    permission_required = 'myapp.add_person'
 
 
 class PersonDetail(PageTitleMixin, DetailView):
@@ -62,7 +64,8 @@ class NewsList(PageTitleMixin, ListView):
     paginate_by = 5
 
 
-class NewsCreate(CreateView):
+class NewsCreate(PermissionRequiredMixin, CreateView):
     model = News
     fields = '__all__'
     success_url = '/news/'
+    permission_required = 'myapp.add_news'

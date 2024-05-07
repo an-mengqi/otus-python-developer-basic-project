@@ -1,6 +1,13 @@
 {% extends 'myapp/base.html' %}
 
 {% block content %}
+        {% if user.is_authenticated %}
+        {{ user.username }}
+        <a href="/auth/logout/">Log out</a>
+    {% else %}
+        <a href="{% url 'myauth:login' %}">Log in</a>
+    {% endif %}
+
     <h3>Company's The Wall of Honor</h3>
     <h5>People ({{ object_list|length }})</h5>
     <ul>
