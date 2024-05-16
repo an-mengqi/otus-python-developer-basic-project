@@ -4,7 +4,6 @@ from myapp.models import Person, PersonProfile, Position, Achievement, News
 from myauth.models import OtusUser
 
 
-
 class Command(BaseCommand):
     help = "Fill Db"
 
@@ -45,10 +44,15 @@ class Command(BaseCommand):
         communication_diploma = Achievement.objects.create(name='"The best communication connect creator of a company" diploma')
         communication_diploma.person.add(interpreter_e)
 
-        director_profile = PersonProfile.objects.create(about_person='Likes active sports while spending free time', person=director_v)
+        best_director_general_award = Achievement.objects.create(name='Best Director General Award')
+        best_director_general_award.person.add(director_v)
+
+        director_profile = PersonProfile.objects.create(about_person='Likes active sports while spending free time',
+                                                        person=director_v)
 
         # news
-        news_1 = News.objects.create(title="Company's Internal Chess Championship!", description="Take part in the Company's Internal Chess Championship on the 15th of May, 2024!")
+        news_1 = News.objects.create(title="Company's Internal Chess Championship!",
+                                     description="Take part in the Company's Internal Chess Championship on the 15th of May, 2024!")
         news_2 = News.objects.create(title="Some title",
                                      description="Some description'")
         news_r = News.objects.create(title="Some title fjfj",

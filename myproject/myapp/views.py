@@ -30,8 +30,8 @@ def send_mail(request):
 
     print('task started', time.time())
 
-    task = tasks.send_mail_task.delay('hello from Django', 'abcde')  # celery case
-    # task = tasks.send_mail_task('hello from Django', 'abcde')  # sync case
+    # task = tasks.send_mail_task.delay('hello from Django', 'abcde')  # celery case
+    task = tasks.send_mail_task('hello from Django', 'abcde')  # sync case
 
     print('django works', time.time())
 
