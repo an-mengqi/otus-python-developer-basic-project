@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 import myapp.views as myapp_views
 from myproject import settings
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', myapp_views.PersonList.as_view()),
@@ -25,7 +26,7 @@ urlpatterns = [
     path('person/<int:pk>/', myapp_views.PersonDetail.as_view()),
     # auth
     path('auth/', include('myauth.urls', namespace='myauth')),
-    # path('auth/login/', LoginView.as_view()),
+    path('logout/', LogoutView.as_view()),
 
     path('send/', myapp_views.send_mail),
     path('news/', myapp_views.NewsList.as_view()),

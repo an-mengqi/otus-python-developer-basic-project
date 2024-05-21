@@ -58,13 +58,13 @@ class PersonDetail(PageTitleMixin, DetailView):
     model = Person
 
 
-class NewsList(PageTitleMixin, ListView):
+class NewsList(PageTitleMixin, LoginRequiredMixin, ListView):
     page_title = 'News'
     model = News
     paginate_by = 5
 
 
-class NewsCreate(PermissionRequiredMixin, CreateView):
+class NewsCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
     model = News
     fields = '__all__'
     success_url = '/news/'
